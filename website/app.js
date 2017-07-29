@@ -1,8 +1,13 @@
 const express = require('express');
 const app = express();
 
+app.set('views', __dirname + '/views');
+app.set('view engine', 'pug');
 
-app.use('/', express.static(__dirname + '/pages'));
+app.get('/', (req, res) => {
+    res.render('index');
+});
+app.use('/', express.static(__dirname + '/assets'));
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
